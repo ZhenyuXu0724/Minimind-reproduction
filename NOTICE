@@ -1,0 +1,14 @@
+MiniMind Reproduction and Experiment Records
+
+Model, training, dataset and evaluation code and tokenizer assets are derived
+from jingyaogong/minimind:
+https://github.com/jingyaogong/minimind
+Historical training commit recorded in run metadata:
+4497610ec0a85d2d0a3db488fd4c1e2f12a416ab
+
+The upstream Apache License 2.0 text is retained in LICENSE and code/LICENSE.
+Learning annotations, experiment documentation and log verification utilities
+were added for this reproduction project. A missing closing parenthesis in the
+annotated evaluation snapshot was repaired during repository preparation.
+Trailing whitespace in source snapshots was normalized for repository review.
+No model architecture or training algorithm innovation is claimed.

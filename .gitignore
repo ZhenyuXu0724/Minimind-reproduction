@@ -1,0 +1,23 @@
+# 权重和数据仅本地保留
+checkpoints/
+code/out/
+code/checkpoints/
+*.pth
+*.pt
+*.bin
+*.safetensors
+*.jsonl
+# 运行环境与日志
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.idea/
+.vscode/
+swanlog/
+wandb/
+.env
+.env.*
+!.env.example
+# 原始办公文档单独归档，公开内容使用 Markdown
+docs/archive/
