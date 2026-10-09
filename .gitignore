@@ -19,5 +19,5 @@ wandb/
 .env
 .env.*
 !.env.example
-# 原始办公文档单独归档，公开内容使用 Markdown
+# 本地备份和整理归档
 docs/archive/
