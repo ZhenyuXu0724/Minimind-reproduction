@@ -1,0 +1,55 @@
+{
+  "status": "保存脚本中的默认值，不等同于历史实验实际参数；尚未用于运行",
+  "scripts": {
+    "train_pretrain.py": {
+      "--save_dir": "../out",
+      "--save_weight": "pretrain",
+      "--epochs": 2,
+      "--batch_size": 32,
+      "--learning_rate": 0.0005,
+      "--device": {
+        "expression": "'cuda:0' if torch.cuda.is_available() else 'cpu'"
+      },
+      "--dtype": "bfloat16",
+      "--num_workers": 8,
+      "--accumulation_steps": 8,
+      "--grad_clip": 1.0,
+      "--log_interval": 100,
+      "--save_interval": 1000,
+      "--hidden_size": 768,
+      "--num_hidden_layers": 8,
+      "--max_seq_len": 340,
+      "--use_moe": 0,
+      "--data_path": "../dataset/pretrain_t2t_mini.jsonl",
+      "--from_weight": "none",
+      "--from_resume": 0,
+      "--wandb_project": "MiniMind-Pretrain",
+      "--use_compile": 0
+    },
+    "train_full_sft.py": {
+      "--save_dir": "../out",
+      "--save_weight": "full_sft",
+      "--epochs": 2,
+      "--batch_size": 16,
+      "--learning_rate": 1e-05,
+      "--device": {
+        "expression": "'cuda:0' if torch.cuda.is_available() else 'cpu'"
+      },
+      "--dtype": "bfloat16",
+      "--num_workers": 8,
+      "--accumulation_steps": 1,
+      "--grad_clip": 1.0,
+      "--log_interval": 100,
+      "--save_interval": 1000,
+      "--hidden_size": 768,
+      "--num_hidden_layers": 8,
+      "--max_seq_len": 768,
+      "--use_moe": 0,
+      "--data_path": "../dataset/sft_t2t_mini.jsonl",
+      "--from_weight": "pretrain",
+      "--from_resume": 0,
+      "--wandb_project": "MiniMind-Full-SFT",
+      "--use_compile": 0
+    }
+  }
+}

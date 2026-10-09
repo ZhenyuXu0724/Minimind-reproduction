@@ -1,0 +1,179 @@
+{
+  "source": "原始 CSV 与控制台日志；CSV step 为各指标记录索引，训练步数取控制台",
+  "runs": [
+    {
+      "run": "run-20260528_133207-ku36bfeujag2hiu206gbf",
+      "metrics": {
+        "loss": {
+          "count": 7939,
+          "first": 8.507607460021973,
+          "last": 1.8338950872421265,
+          "minimum": 1.522871732711792,
+          "maximum": 8.507607460021973,
+          "first_time": "2026-05-28 13:32:12",
+          "last_time": "2026-05-28 16:24:12"
+        },
+        "logits_loss": {
+          "count": 7939,
+          "first": 8.507607460021973,
+          "last": 1.8338950872421265,
+          "minimum": 1.522871732711792,
+          "maximum": 8.507607460021973,
+          "first_time": "2026-05-28 13:32:12",
+          "last_time": "2026-05-28 16:24:12"
+        },
+        "aux_loss": {
+          "count": 7939,
+          "first": 0.0,
+          "last": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "first_time": "2026-05-28 13:32:12",
+          "last_time": "2026-05-28 16:24:12"
+        },
+        "learning_rate": {
+          "count": 7939,
+          "first": 0.0004999999823834582,
+          "last": 5e-05,
+          "minimum": 5e-05,
+          "maximum": 0.0004999999823834582,
+          "first_time": "2026-05-28 13:32:12",
+          "last_time": "2026-05-28 16:24:12"
+        },
+        "__swanlab__.gpu.0.mem.value": {
+          "count": 197,
+          "first": 1642.0,
+          "last": 5878.0,
+          "minimum": 1642.0,
+          "maximum": 5929.0,
+          "first_time": "2026-05-28 13:32:09",
+          "last_time": "2026-05-28 16:24:05"
+        }
+      },
+      "memory_interval_median_seconds": 61.047799499999996,
+      "console_final_epoch": 1,
+      "console_steps_per_epoch": 79390,
+      "dataloader_total_steps": 79390,
+      "sha256": {
+        "run-20260528_133207-ku36bfeujag2hiu206gbf.csv": "11c94bcd05b8a5f29518a1c5da04750da3d0911a23ad7e0665d7820fbf3f980d",
+        "run-20260528_133207-ku36bfeujag2hiu206gbf_console.txt": "97c083e8db60ece468ed5be78bb2e2563eb4ff2b23e9d3e888fa557527361aab"
+      }
+    },
+    {
+      "run": "run-20260528_163059-178ikzljti4qwp1tej2py",
+      "metrics": {
+        "loss": {
+          "count": 11322,
+          "first": 2.6600000858306885,
+          "last": 1.669844627380371,
+          "minimum": 0.8819630742073059,
+          "maximum": 2.6600000858306885,
+          "first_time": "2026-05-28 16:31:05",
+          "last_time": "2026-05-28 21:54:31"
+        },
+        "logits_loss": {
+          "count": 11322,
+          "first": 2.6600000858306885,
+          "last": 1.669844627380371,
+          "minimum": 0.8819630742073059,
+          "maximum": 2.6600000858306885,
+          "first_time": "2026-05-28 16:31:05",
+          "last_time": "2026-05-28 21:54:31"
+        },
+        "aux_loss": {
+          "count": 11322,
+          "first": 0.0,
+          "last": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "first_time": "2026-05-28 16:31:05",
+          "last_time": "2026-05-28 21:54:31"
+        },
+        "learning_rate": {
+          "count": 11322,
+          "first": 9.99999982674957e-06,
+          "last": 1.0000000000000002e-06,
+          "minimum": 1.0000000000000002e-06,
+          "maximum": 9.99999982674957e-06,
+          "first_time": "2026-05-28 16:31:05",
+          "last_time": "2026-05-28 21:54:31"
+        },
+        "__swanlab__.gpu.0.mem.value": {
+          "count": 345,
+          "first": 1778.0,
+          "last": 5966.0,
+          "minimum": 1778.0,
+          "maximum": 6102.0,
+          "first_time": "2026-05-28 16:31:01",
+          "last_time": "2026-05-28 21:53:32"
+        }
+      },
+      "memory_interval_median_seconds": 61.0491155,
+      "console_final_epoch": 1,
+      "console_steps_per_epoch": 113215,
+      "dataloader_total_steps": 113215,
+      "sha256": {
+        "run-20260528_163059-178ikzljti4qwp1tej2py.csv": "4d0f461753fe4af14f1a874de11236674c92a639e30a306dcfe574d3ddbd11d1",
+        "run-20260528_163059-178ikzljti4qwp1tej2py_console.txt": "492d0deb8d22edcd9e952cb6cd42417d84c1791d8977fe7441b2eccc4b69c73f"
+      }
+    },
+    {
+      "run": "run-20260618_023103-hblvprxn3qfs3erhu6ltd",
+      "metrics": {
+        "loss": {
+          "count": 22644,
+          "first": 2.6602678298950195,
+          "last": 1.726230263710022,
+          "minimum": 0.8541889190673828,
+          "maximum": 2.6602678298950195,
+          "first_time": "2026-06-18 02:31:10",
+          "last_time": "2026-06-18 12:59:32"
+        },
+        "logits_loss": {
+          "count": 22644,
+          "first": 2.6602678298950195,
+          "last": 1.726230263710022,
+          "minimum": 0.8541889190673828,
+          "maximum": 2.6602678298950195,
+          "first_time": "2026-06-18 02:31:10",
+          "last_time": "2026-06-18 12:59:32"
+        },
+        "aux_loss": {
+          "count": 22644,
+          "first": 0.0,
+          "last": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "first_time": "2026-06-18 02:31:10",
+          "last_time": "2026-06-18 12:59:32"
+        },
+        "learning_rate": {
+          "count": 22644,
+          "first": 9.999999956687393e-06,
+          "last": 1.0000000000000002e-06,
+          "minimum": 1.0000000000000002e-06,
+          "maximum": 9.999999956687393e-06,
+          "first_time": "2026-06-18 02:31:10",
+          "last_time": "2026-06-18 12:59:32"
+        },
+        "__swanlab__.gpu.0.mem.value": {
+          "count": 645,
+          "first": 1985.0,
+          "last": 5956.0,
+          "minimum": 1985.0,
+          "maximum": 6176.0,
+          "first_time": "2026-06-18 02:31:06",
+          "last_time": "2026-06-18 12:58:52"
+        }
+      },
+      "memory_interval_median_seconds": 61.050148,
+      "console_final_epoch": 2,
+      "console_steps_per_epoch": 113215,
+      "dataloader_total_steps": 226430,
+      "sha256": {
+        "run-20260618_023103-hblvprxn3qfs3erhu6ltd.csv": "bac23cbe51500585008013a2fe8d399e2142b87765731e836ff5fb6d26e88000",
+        "run-20260618_023103-hblvprxn3qfs3erhu6ltd_console.txt": "2e6f2491f0b5104e0c272b1a063f7339e2c7eb38cdb893d5c1a6b04bdcaaf0c6"
+      }
+    }
+  ]
+}
