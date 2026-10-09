@@ -1,48 +1,42 @@
 # MiniMind 复现与实验分析
 
-在 RTX 5070 Laptop 8 GB 单卡上复现约 64M 参数语言模型，完成 mini 数据预训练、全参数 SFT 及 1 轮与 2 轮生成结果对比。项目包含中文注释代码、源码笔记、SwanLab 曲线和技术报告；个人贡献集中在环境排查、训练实践与结果分析。
+在 RTX 5070 Laptop 8 GB 单卡上完成约 64M 参数语言模型的预训练与全参数 SFT，比较 1 轮和 2 轮微调结果。使用约 127 万条预训练文本和 91 万条指令样本，预训练记录 loss 从 8.5076 降至 1.8339。
 
-## 实验概览
+## 完成的工作
 
-| 实验 | 样本数 | 轮数 | 训练记录 loss 首值至末值 | 耗时 |
-| --- | --- | --- | --- | --- |
-| 预训练 | 1,270,238 | 1 | 8.5076 → 1.8339 | 2h 52m |
-| SFT 1 轮 | 905,718 | 1 | 2.6600 → 1.6698 | 5h 24m |
-| SFT 2 轮 | 905,718 | 2 | 2.6603 → 1.7262 | 10h 29m |
+- 排查 Windows 下 CUDA、DLL 和依赖兼容问题，完成三次训练并用 SwanLab 记录指标。
+- 阅读并注释模型、数据处理、训练与推理源码，理解 RMSNorm、RoPE、GQA 和 SwiGLU。
+- 对比自训模型与作者模型的生成样例，分析重复、异常符号和技术幻觉；代码改动主要为学习注释。
 
-数值已由 [原始 CSV 和控制台日志](experiments/logs/) 核验；loss 为训练记录值，不是验证集指标。两次 SFT 均从同一个预训练权重独立开始。GPU 显存记录峰值分别为 5929、6102、6176 MB，导出显存记录的时间间隔中位数约为 61 秒。
+详细配置、曲线和结果见 [技术报告](docs/technical_report.md)。SFT 2 轮在现有样例中回答更长，但技术准确性未见明确改善；历史评估未固定 seed，结论限于定性观察。
 
-SFT 2 轮在现有样例中回答更长，但技术准确性未见明确改善。评估未固定 seed，少量截图只能作定性分析。
+## 使用
 
-## 阅读项目
+从仓库根目录核验实验记录，仅需要 Python 3.10 或更新版本：
 
-- [技术报告](docs/technical_report.md)：训练过程、结果和局限。
-- [使用说明](docs/usage.md)：日志核验、可选推理及路径约定。
-- [实验记录](docs/experiment_records.md)：实际参数、原训练命令、指标口径。
-- [个人贡献](docs/personal_contribution.md)：环境排查和简历表述参考。
-- [源码复习路线](docs/review_notes.md)：模型、训练和推理流程。
-- [数据来源](docs/data_sources.md)：数据规模、处理和历史版本记录。
-
-## 文件结构
-
-```text
-code/                     模型、训练和评估的注释代码
-configs/                  实际实验参数、脚本默认值、环境记录
-experiments/logs/          原始 CSV 与控制台日志
-experiments/summary.json   可重复生成的指标汇总
-experiments/figures/       三次训练曲线
-experiments/evaluations/   自训和作者模型生成截图
-checkpoints/              三个自训权重，仅本地保存
-docs/                     技术报告、笔记和实验记录
-docs/archive/             原始报告、汇总与办公文档，仅本地归档
+```powershell
+python tools/summarize_exports.py
+python tools/check_project.py
 ```
 
-## 代码来源与运行状态
+脚本检查日志统计、源文件语法、tokenizer JSON 和文档链接，GitHub Actions 执行同样的检查。
 
-复现基于 [jingyaogong/minimind](https://github.com/jingyaogong/minimind)，汇总记录 commit `4497610ec0a85d2d0a3db488fd4c1e2f12a416ab`。四个代码文件的历史修改主要为学习注释，没有模型结构或训练算法功能改动。
+推理需要模型依赖及权重。历史环境为 Python 3.10.20、torch 2.11.0+cu128、transformers 4.57.6；依赖见 [上游清单](code/requirements.txt) 和 [实际环境快照](configs/requirements.freeze.txt)。从 `code/` 目录使用本地 SFT 1 轮权重：
 
-历史环境记录 Windows、Python 3.10.20、torch 2.11.0+cu128、transformers 4.57.6、datasets 3.6.0、SwanLab 0.7.11；三次运行的依赖快照已归档且内容一致，见 [环境记录](configs/environment_record.md)。实际参数见 [historical_runs.json](configs/historical_runs.json)，脚本默认参数单独保存，二者不混用。
+```powershell
+python eval_llm.py --load_from model --save_dir "../checkpoints/sft epoch=1" --weight full_sft --hidden_size 768 --num_hidden_layers 8 --device cuda --max_new_tokens 512
+```
 
-数据加载模块、trainer_utils、model_lora、tokenizer、依赖清单和 Apache 2.0 许可证已补齐。三次运行元数据确认历史 commit 与训练命令。当前尚未安装运行依赖或验证模型加载，代码只完成静态语法检查；数据集未复制。文件归档状态见 [转移清单](docs/transfer_checklist.md)。
+权重与数据集未上传；该推理命令按现有路径整理，尚未重新验证模型加载。SFT 2 轮使用目录 `../checkpoints/sft epoch=2` 和前缀 `full_sft_e2`。
 
-权重、数据和原始办公文档已由 `.gitignore` 排除。原始运行元数据仅本地归档；上游许可文本保留在 LICENSE 和 code/LICENSE，来源与修改说明见 NOTICE。GitHub Actions 只检查记录和源文件，不执行模型训练或推理。
+## 文件与来源
+
+```text
+code/          模型、数据处理、训练、推理和 tokenizer
+configs/       实际训练参数和环境快照
+experiments/   原始日志、统计汇总、曲线和生成截图
+docs/          技术报告
+tools/         日志汇总与静态检查
+```
+
+基于 [jingyaogong/minimind](https://github.com/jingyaogong/minimind) 的提交 `4497610ec0a85d2d0a3db488fd4c1e2f12a416ab`，保留 Apache 2.0 许可文本及 [来源说明](NOTICE)。个人工作为训练复现、源码学习和实验分析。
